@@ -59,18 +59,19 @@ Below are some examples of clinical text comparing `clinitokenizer` to `nltk.tok
 
 **nltk output:** 
 
+```
 He was asked if he was taking any medications.
-
 Patient is currently taking 5 m.g.
-
 Tylenol.
+```
 
 
 **clinitokenizer output:**
 
+```
 He was asked if he was taking any medications. 
-
 Patient is currently taking 5 m.g. Tylenol.
+```
 
 ---
 
@@ -79,16 +80,16 @@ Patient is currently taking 5 m.g. Tylenol.
 
 **nltk output:**
 
+```
 Pt.
-
 has hx of alcohol use disorder He is recovering.
-
+```
 
 **clinitokenizer output:**
-
+```
 Pt. has hx of alcohol use disorder 
-
 He is recovering.
+```
 
 ---
 
@@ -97,14 +98,16 @@ He is recovering.
 
 **nltk output:**
 
+```
 Pt.
-
 has hx of alcohol use disorder but He is recovering.
-
+```
 
 **clinitokenizer output:**
 
+```
 Pt. has hx of alcohol use disorder but He is recovering.
+```
 
 ---
 
@@ -113,11 +116,13 @@ Pt. has hx of alcohol use disorder but He is recovering.
 
 **nltk output:**
 
+```
 Past Medical History: Patient has PMH of COPD.
-
+```
 
 **clinitokenizer output:**
 
+```
 Past Medical History: 
-
 Patient has PMH of COPD.
+```
