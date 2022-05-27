@@ -54,7 +54,7 @@ Compared to other off-the-shelf sentence tokenizers (i.e. `nltk`), `clinitokeniz
 Below are some examples of clinical text comparing `clinitokenizer` to `nltk.tokenize.sent_tokenize`:
 
 
-#### "He was asked if he was taking any medications. Patient is currently taking 5 m.g. Tylenol."
+### "He was asked if he was taking any medications. Patient is currently taking 5 m.g. Tylenol."
 **notes:** Challenge here is not mistaking m.g. for end-of-sentence.
 
 **nltk output:** 
@@ -66,8 +66,9 @@ Tylenol.
 He was asked if he was taking any medications. 
 Patient is currently taking 5 m.g. Tylenol.
 
+---
 
-#### "Pt. has hx of alcohol use disorder He is recovering."
+### "Pt. has hx of alcohol use disorder He is recovering."
 **notes:** Challenge here is there is a typo after 'disorder', missing a period. Can tokenizer semantically identify new sentence?
 
 **nltk output:**
@@ -78,8 +79,9 @@ has hx of alcohol use disorder He is recovering.
 Pt. has hx of alcohol use disorder 
 He is recovering.
 
+---
 
-#### "Pt. has hx of alcohol use disorder but He is recovering."
+### "Pt. has hx of alcohol use disorder but He is recovering."
 **notes:** Opposite as previous example -- here, there is an accidental capitalization. Can tokenizer semantically identify it is NOT a new sentence?
 
 **nltk output:**
@@ -89,8 +91,9 @@ has hx of alcohol use disorder but He is recovering.
 **clinitokenizer output:**
 Pt. has hx of alcohol use disorder but He is recovering.
 
+---
 
-#### "Past Medical History: Patient has PMH of COPD."
+### "Past Medical History: Patient has PMH of COPD."
 **notes:** "Past Medical History" is a sentence header. Even though it is technically a single sentence according to English grammar, when extracting section headers it may be important to identify them as distinct from all sentences under that header.
 
 **nltk output:**
