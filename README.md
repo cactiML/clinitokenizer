@@ -6,19 +6,25 @@ General English sentence tokenizers are often unable to correctly parse medical 
 
 The model has been trained on multiple datasets provided by [i2b2 (now n2c2)](https://n2c2.dbmi.hms.harvard.edu). Please visit the n2c2 site to request access to the dataset.
 
+## Installation
+```bash
+pip install clinitokenizer
+```
+
 ## Quickstart
 
-```
+```python
 from clinitokenizer.tokenize import clini_tokenize
 
 text = "He was asked if he was taking any medications. Patient is currently taking 5 m.g. Tylenol."
 sents = clini_tokenize(text)
-# sents = ['He was asked if he was taking any medications.', 'Patient is currently taking 5 m.g. Tylenol.']
+# sents = ['He was asked if he was taking any medications.',
+#	      'Patient is currently taking 5 m.g. Tylenol.']
 ```
 
 You can use clinitokenizer as a drop-in replacement for [nltk's](https://www.nltk.org/api/nltk.tokenize.html) `sent_tokenize` function:
 
-```
+```python
 # to swap in clinitokenizer, replace the nltk import...
 from nltk.tokenize import sent_tokenize
 
