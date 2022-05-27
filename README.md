@@ -19,7 +19,7 @@ from clinitokenizer.tokenize import clini_tokenize
 text = "He was asked if he was taking any medications. Patient is currently taking 5 m.g. Tylenol."
 sents = clini_tokenize(text)
 # sents = ['He was asked if he was taking any medications.',
-#	      'Patient is currently taking 5 m.g. Tylenol.']
+#         'Patient is currently taking 5 m.g. Tylenol.']
 ```
 
 You can use clinitokenizer as a drop-in replacement for [nltk's](https://www.nltk.org/api/nltk.tokenize.html) `sent_tokenize` function:
