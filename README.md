@@ -48,3 +48,54 @@ The model can be run on GPU or CPU, and will automatically switch depending on a
 Compared to other off-the-shelf sentence tokenizers (i.e. `nltk`), `clinitokenizer` will run slower (especially on machines without GPU) and consume more memory, so if near-instant tokenization is the goal, using a GPU-based machine or another tokenizer may be better.
 
 `clinitokenizer` is optimized for natural-language text in the clinical domain. Therefore, when tokenizing more general English sentences or for tasks in a different domain, other generalized tokenizers may perform better.
+
+
+## Motivating Examples
+Below are some examples of clinical text comparing `clinitokenizer` to `nltk.tokenize.sent_tokenize`:
+
+
+#### "He was asked if he was taking any medications. Patient is currently taking 5 m.g. Tylenol."
+**notes:** Challenge here is not mistaking m.g. for end-of-sentence.
+
+**nltk output:** 
+He was asked if he was taking any medications.
+Patient is currently taking 5 m.g.
+Tylenol.
+
+**clinitokenizer output:**
+He was asked if he was taking any medications. 
+Patient is currently taking 5 m.g. Tylenol.
+
+
+#### "Pt. has hx of alcohol use disorder He is recovering."
+**notes:** Challenge here is there is a typo after 'disorder', missing a period. Can tokenizer semantically identify new sentence?
+
+**nltk output:**
+Pt.
+has hx of alcohol use disorder He is recovering.
+
+**clinitokenizer output:**
+Pt. has hx of alcohol use disorder 
+He is recovering.
+
+
+#### "Pt. has hx of alcohol use disorder but He is recovering."
+**notes:** Opposite as previous example -- here, there is an accidental capitalization. Can tokenizer semantically identify it is NOT a new sentence?
+
+**nltk output:**
+Pt.
+has hx of alcohol use disorder but He is recovering.
+
+**clinitokenizer output:**
+Pt. has hx of alcohol use disorder but He is recovering.
+
+
+#### "Past Medical History: Patient has PMH of COPD."
+**notes:** "Past Medical History" is a sentence header. Even though it is technically a single sentence according to English grammar, when extracting section headers it may be important to identify them as distinct from all sentences under that header.
+
+**nltk output:**
+Past Medical History: Patient has PMH of COPD.
+
+**clinitokenizer output:**
+Past Medical History: 
+Patient has PMH of COPD.
