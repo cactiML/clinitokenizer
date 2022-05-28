@@ -32,7 +32,7 @@ from nltk.tokenize import sent_tokenize
 from clinitokenizer.tokenize import clini_tokenize as sent_tokenize
 
 # and tokenizing should work in the same manner!
-nltk_sents = sent_tokenize(text)
+tokenized_sents = sent_tokenize(text)
 ```
 
 ## Technical Details
