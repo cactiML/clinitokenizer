@@ -49,6 +49,8 @@ Compared to other off-the-shelf sentence tokenizers (i.e. `nltk`), `clinitokeniz
 
 `clinitokenizer` is optimized for natural-language text in the clinical domain. Therefore, when tokenizing more general English sentences or for tasks in a different domain, other generalized tokenizers may perform better.
 
+## Additional Configuration
+See the [CliniTokenize class](https://github.com/clinisift/clinitokenizer/blob/main/src/clinitokenizer/tokenize.py) for more configuration options (more documentation coming soon).
 
 ## Motivating Examples
 Below are some examples of clinical text comparing `clinitokenizer` to `nltk.tokenize.sent_tokenize`:
