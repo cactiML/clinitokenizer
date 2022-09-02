@@ -45,7 +45,7 @@ The model can be run on GPU or CPU, and will automatically switch depending on a
 
 `clinitokenizer` uses a large neural network (about 1.2 GB) which will be downloaded and cached on-device on first run. This initial setup may take a few minutes, but should only happen once.
 
-Compared to other off-the-shelf sentence tokenizers (i.e. `nltk`), `clinitokenizer` will run slower and consume more memory when running on CPU, so if near-instant tokenization is the goal, using a GPU-based machine or another tokenizer may be better. On a machine with GPU, the time difference is negligable.
+Compared to other off-the-shelf sentence tokenizers (i.e. `nltk`), `clinitokenizer` will run slower and consume more memory when running on CPU, so if quicker tokenization is the goal, using a GPU-based machine or another tokenizer may be better.
 
 `clinitokenizer` is optimized for natural-language text in the clinical domain. Therefore, when tokenizing more general English sentences or for tasks in a different domain, other generalized tokenizers may perform better.
 
