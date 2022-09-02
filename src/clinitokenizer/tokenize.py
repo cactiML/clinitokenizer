@@ -1,6 +1,7 @@
 import torch
 from simpletransformers.ner import NERModel
 from tqdm import tqdm
+import logging
 
 MAX_SEQ = 32
 CUDA_AVAILABLE = torch.cuda.is_available()
@@ -23,7 +24,6 @@ class CliniTokenize:
             tokenizer_model[1],
             args={"silent": True, "labels_list": ["B-sent", "B-split", "I-sent"]},
             use_cuda=self.use_cuda,
-
         )
 
     def _inference(self, model, text, split_on_space=True):
@@ -51,6 +51,18 @@ class CliniTokenize:
             while len(split) > 0:
                 buffer = split[: min(BUFFER_SIZE, len(split))]
                 pred = self._inference(self.model, buffer, split_on_space=False)
+                while len(buffer) != len(pred):
+                    if len(buffer) == 1:
+                        logging.warning(
+                            "Error tokenizing even when buffer size is 1, skipping."
+                        )
+                        continue
+                    BUFFER_SIZE = int(BUFFER_SIZE / 2)
+                    logging.warning(
+                        "Buffer size reduced to {} for iteration.".format(BUFFER_SIZE)
+                    )
+                    buffer = split[: min(BUFFER_SIZE, len(split))]
+                    pred = self._inference(self.model, buffer, split_on_space=False)
                 assert len(buffer) == len(pred)
 
                 new_sents = [1 if x[1] == "B-sent" else 0 for x in pred]
@@ -79,6 +91,7 @@ class CliniTokenize:
                     split = split[last:]
                     delta = last
 
+                BUFFER_SIZE = self.MAX_SEQ
                 pbar.update(delta)
             all_sents.append(" ".join(new_sent))
             pbar.close()
@@ -86,9 +99,12 @@ class CliniTokenize:
 
 
 clinitokenize = None
+
+
 def clini_tokenize(text):
     # lazy loading of model
     global clinitokenize
-    if clinitokenize == None: clinitokenize = CliniTokenize()
+    if clinitokenize == None:
+        clinitokenize = CliniTokenize()
 
     return clinitokenize.tokenize(text)
