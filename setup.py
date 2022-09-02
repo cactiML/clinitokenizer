@@ -14,7 +14,7 @@ install_requires=[
 
 setuptools.setup(
     name="clinitokenizer",
-    version="0.0.3",
+    version="0.0.5",
     author="Sam Rawal",
     author_email="scrawal2@illinois.edu",
     description="Sentence tokenizer for text from clinical notes.",
